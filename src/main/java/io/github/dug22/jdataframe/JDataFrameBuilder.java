@@ -1,5 +1,7 @@
 package io.github.dug22.jdataframe;
 
+import io.github.dug22.jdataframe.operations.drop.How;
+import io.github.dug22.jdataframe.operations.drop.impl.DropImpl;
 import io.github.dug22.jdataframe.operations.filter.FilterPredicate;
 import io.github.dug22.jdataframe.operations.filter.impl.FilterImpl;
 import io.github.dug22.jdataframe.operations.group.impl.GroupByImpl;
@@ -28,6 +30,48 @@ public class JDataFrameBuilder {
     // Method to set an initial data frame map (optional)
     public JDataFrameBuilder fromData(Map<String, List<Object>> data) {
         this.dataFrameMap = new LinkedHashMap<>(data);
+        return this;
+    }
+
+    /**
+     * Drops multiple columns from a given data frame.
+     * @param column the given column we want to drop
+     * @return the dataframe with the specified column dropped
+     */
+    public JDataFrameBuilder drop(String column){
+        new DropImpl().drop(dataFrameMap, column);
+        return this;
+    }
+
+    /**
+     * Drops multiple columns from a given data frame.
+     * @param columns the columns we want to drop
+     * @return the dataframe with the specified columns dropped
+     */
+    public JDataFrameBuilder drop(List<String> columns){
+        new DropImpl().drop(dataFrameMap, columns);
+        return this;
+    }
+
+    /**
+     * Drops null values from a given column.
+     * @param column the column we want to remove null values from.
+     * @param how if how = 'all' it drops the entire column, if 'any' it just removes that value from the column if any null values are spotted.
+     * @return the dataframe with the null values dropped according to the specified 'how' parameter.
+     */
+    public JDataFrameBuilder dropNA(String column, How how){
+        new DropImpl().dropNA(dataFrameMap, column, how);
+        return this;
+    }
+
+    /**
+     * Drops null values from multiple columns.
+     * @param columns the columns we want to remove null value from.
+     * @param how if how = 'all' it drops the entire column, if 'any' it just removes that value from the column if any null values are spotted.
+     * @return the dataframe with null values dropped according to the specified `how` parameter.
+     */
+    public JDataFrameBuilder dropNA(List<String> columns, How how){
+        new DropImpl().dropNA(dataFrameMap, columns, how);
         return this;
     }
 
@@ -94,12 +138,11 @@ public class JDataFrameBuilder {
      * This method takes the result of a group-by operation (a nested map) and
      * flattens it into the standard DataFrame structure (a map of column names to lists of data).
      *
-     * @param groupedMap the grouped map result from the group-by operation
-     * @return a map representing the DataFrame with columns and their respective grouped data
+     * @param groupedMap the grouped map result from the group-by operation.
+     * @return a map representing the DataFrame with columns and their respective grouped data.
      */
     private Map<String, List<Object>> convertGroupedMapToDataFrame(Map<Object, Map<String, List<Object>>> groupedMap) {
         Map<String, List<Object>> newDataFrameMap = new LinkedHashMap<>();
-        // Iterate over the grouped map and flatten it back into a DataFrame structure
         for (Map.Entry<Object, Map<String, List<Object>>> entry : groupedMap.entrySet()) {
             for (Map.Entry<String, List<Object>> innerEntry : entry.getValue().entrySet()) {
                 newDataFrameMap.computeIfAbsent(innerEntry.getKey(), k -> new ArrayList<>()).addAll(innerEntry.getValue());

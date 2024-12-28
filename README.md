@@ -20,7 +20,7 @@ If you're using Maven, add JDataFrame to your given project's pom.xml. Copy and 
 <dependency>
   <groupId>io.github.dug22</groupId>
   <artifactId>jdataframe</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
 </dependency>
 ~~~
 

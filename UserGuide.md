@@ -284,7 +284,7 @@ Evan, 200, 26
 **Dropping Null Values From a DataFrame Using HOW.ANY**
 ~~~java
  // We must use mutable lists to add null values into our dataset.
-        Map<String, List<Object>> dataframeMap = Map.of(
+Map<String, List<Object>> dataframeMap = Map.of(
                 "Weight", new ArrayList<>(Arrays.asList(220, null, 170, 195, 200, null)),
                 "Age", new ArrayList<>(Arrays.asList(28, 33, 24, 31, 26, null)),
                 "Name", new ArrayList<>(Arrays.asList("Ben", "Jenny", null, "Daniel", "Evan", null))
@@ -458,7 +458,7 @@ Weight:185
 //Defined DataFrame
 JDataFrame dataFrame = JDataFrame.builder().fromData(dataframeMap).build();
 
-//Exporting our dataframe to a text file
+//Exporting our dataframe to a csv file
 dataFrame.exportToCSV('myfile.csv');
 ~~~
 
@@ -484,7 +484,7 @@ Jacob,32,185,
 //Defined DataFrame
 JDataFrame dataFrame = JDataFrame.builder().fromData(dataframeMap).build();
 
-//Exporting our dataframe to a text file
+//Exporting our dataframe to a json file
 dataFrame.exportToJSON('myfile.json');
 ~~~
 

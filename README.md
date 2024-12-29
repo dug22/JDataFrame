@@ -65,5 +65,4 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 
 ### Currently Working On:
 * More Documentation.
-* Allow users to export data to CSV, JSON, and TXT files.
 * Add more statistic functions. 

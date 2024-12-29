@@ -19,7 +19,7 @@ JDataFrame short for Java DataFrame is a simple and easy-to-use dataframe librar
   * Statistic functions supported: sum, mean, mode, median, min, max, and range.
 
 ### Getting started:
-If you're using Maven, add JDataFrame to your given project's pom.xml. Copy and paste the given dependency into you pom.xml.
+If you're using Maven, add JDataFrame to your given project's pom.xml. Copy and paste the given dependency into your pom.xml.
 ~~~xml
 <dependency>
   <groupId>io.github.dug22</groupId>

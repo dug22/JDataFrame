@@ -8,8 +8,8 @@ JDataFrame short for Java DataFrame is a simple and easy-to-use dataframe librar
 </p>
 
 ### Requirements
-You must have Java 21 installed.
-You must have Maven installed. JDataFrame uses Maven to build the project.
+* You must have Java 21 installed.
+* You must have Maven installed. JDataFrame uses Maven to build the project.
 
 ### JDataFrame Features
 **Data manipulation & transformation**

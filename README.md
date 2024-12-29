@@ -35,6 +35,9 @@ If you're using Maven, add JDataFrame to your given project's pom.xml. Copy and 
 ### Support & Contributions
 If you'd like to contribute to this repository, feel free to open a pull request with your suggestions, bug fixes, or enhancements [here](https://github.com/dug22/JDataFrame/issues). Contributions are always welcome! 
 
+### License
+JDataFrame is released under the [MIT license](https://github.com/dug22/JDataFrame/blob/master/LICENSE).
+
 ### Currently Working On:
 * More Documentation.
 * Allow users to export data to CSV, JSON, and TXT files.

@@ -22,17 +22,23 @@ public interface Drop {
 
     /**
      * Drops null values from a given column.
+     *
      * @param dataFrameMap the dataframe containing the data.
-     * @param column the column we want to remove null values from.
-     * @param how if how = 'all' it drops the entire column, if 'any' it just removes that value from the column if any null values are spotted.
+     * @param column the column we want to remove null value from.
+     * @param how Specifies how to handle null values:
+     *                     - If 'ALL', drops rows where all elements are missing across all columns.
+     *                     - If 'ANY', drops rows containing any null values in the specified columns will have those null values removed.
      */
     void dropNA(Map<String, List<Object>> dataFrameMap, String column, How how);
 
     /**
      * Drops null values from multiple columns.
+     *
      * @param dataFrameMap the dataframe containing the data.
      * @param columns the columns we want to remove null value from.
-     * @param how if how = 'all' it drops the entire column, if 'any' it just removes that value from the column if any null values are spotted.
+     * @param how Specifies how to handle null values:
+     *                     - If 'ALL', drops rows where all elements are missing across all columns.
+     *                     - If 'ANY', drops rows containing any null values in the specified columns will have those null values removed.
      */
     void dropNA(Map<String, List<Object>> dataFrameMap, List<String> columns, How how);
 }

@@ -56,7 +56,9 @@ public class JDataFrameBuilder {
     /**
      * Drops null values from a given column.
      * @param column the column we want to remove null values from.
-     * @param how if how = 'all' it drops the entire column, if 'any' it just removes that value from the column if any null values are spotted.
+     * @param how Specifies how to handle null values:
+     *                     - If 'ALL', drops rows where all elements are missing across all columns.
+     *                     - If 'ANY', drops rows containing any null values in the specified columns will have those null values removed.
      * @return the dataframe with the null values dropped according to the specified 'how' parameter.
      */
     public JDataFrameBuilder dropNA(String column, How how){
@@ -67,7 +69,9 @@ public class JDataFrameBuilder {
     /**
      * Drops null values from multiple columns.
      * @param columns the columns we want to remove null value from.
-     * @param how if how = 'all' it drops the entire column, if 'any' it just removes that value from the column if any null values are spotted.
+     * @param how Specifies how to handle null values:
+     *                     - If 'ALL', drops rows where all elements are missing across all columns.
+     *                     - If 'ANY', drops rows containing any null values in the specified columns will have those null values removed.
      * @return the dataframe with null values dropped according to the specified `how` parameter.
      */
     public JDataFrameBuilder dropNA(List<String> columns, How how){

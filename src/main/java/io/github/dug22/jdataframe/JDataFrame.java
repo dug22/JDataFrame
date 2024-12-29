@@ -109,6 +109,7 @@ public class JDataFrame implements DataFrame {
      * @param column the column name on which the statistical function is applied
      * @return the result of the statistical calculation
      */
+    @Override
     public double findStat(String function, String column) {
         return Statistics.valueOf(function).calculate(dataFrameMap, column);
     }
@@ -120,6 +121,7 @@ public class JDataFrame implements DataFrame {
      * @param columns a list of column names for which to apply the statistical function
      * @return a list of results for each column
      */
+    @Override
     public List<Double> findStat(String function, List<String> columns) {
         return Statistics.valueOf(function).calculate(dataFrameMap, columns);
     }
@@ -128,6 +130,7 @@ public class JDataFrame implements DataFrame {
      * Exports a dataframe to a TXT file.
      * @param filePath the path of the destined TXT file.
      */
+    @Override
     public void exportToTXT(String filePath){
         TextUtils.writeToTXTFile(filePath, dataFrameMap);
     }
@@ -136,6 +139,7 @@ public class JDataFrame implements DataFrame {
      * Exports a dataframe to a CSV file
      * @param filePath the path of the destined CSV file.
      */
+    @Override
     public void exportToCSV(String filePath){
         CSVUtils.writeToCSV(filePath, dataFrameMap);
     }
@@ -144,6 +148,7 @@ public class JDataFrame implements DataFrame {
      * Exports a dataframe to a JSON file
      * @param filePath the path of the destined JSON file.
      */
+    @Override
     public void exportToJSON(String filePath){
         JSONUtils.writeToJSONFile(filePath, dataFrameMap);
     }

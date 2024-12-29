@@ -1,5 +1,7 @@
 package io.github.dug22.jdataframe;
 
+import java.util.List;
+
 public interface DataFrame {
 
     /**
@@ -45,4 +47,40 @@ public interface DataFrame {
      */
     int size();
 
+
+    /**
+     * Calculates a statistical value (e.g., sum, mean) for a given column.
+     *
+     * @param function the name of the statistical function to apply (e.g., "SUM", "MEAN")
+     * @param column the column name on which the statistical function is applied
+     * @return the result of the statistical calculation
+     */
+    double findStat(String function, String column);
+
+    /**
+     * Calculates a statistical value for multiple columns.
+     *
+     * @param function the name of the statistical function to apply
+     * @param columns a list of column names for which to apply the statistical function
+     * @return a list of results for each column
+     */
+    List<Double> findStat(String function, List<String> columns);
+
+    /**
+     * Exports a dataframe to a TXT file.
+     * @param filePath the path of the destined TXT file.
+     */
+    void exportToTXT(String filePath);
+
+    /**
+     * Exports a dataframe to a CSV file
+     * @param filePath the path of the destined CSV file.
+     */
+    void exportToCSV(String filePath);
+
+    /**
+     * Exports a dataframe to a JSON file
+     * @param filePath the path of the destined JSON file.
+     */
+    void exportToJSON(String filePath);
 }

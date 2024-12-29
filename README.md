@@ -11,6 +11,9 @@ JDataFrame short for Java DataFrame is a simple and easy-to-use dataframe librar
 * You must have Java 21 installed.
 * You must have Maven installed. JDataFrame uses Maven to build the project.
 
+### Dependencies JDataFrame Uses
+* JDataFrame v1.0.3+ uses the latest version of [Gson's](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.11.0) library.
+  
 ### JDataFrame Features
 **Data manipulation & transformation**
 * Import data from hard-coded data and CSV files.

@@ -14,6 +14,7 @@
       * [Dropping Null Values From a DataFrame](#dropping-null-values-from-a-dataframe)
    * [Grouping Columns Within a DataFrame](#grouping-columns-within-a-dataframe)
    * [Statistic Functions](#statistic-functions)
+   * [Exporting a DataFrame to a Specific File](#exporting-a-dataframe-to-a-specific-file)
 4. [Reporting Bugs](#reporting-bugs)
 5. [Contributions](#contributions)
 
@@ -398,6 +399,131 @@ Mean Age & Weight=[29.0, 148.33333333333334]
 Maximum Age & Weight=[33.0, 185.0]
 Minimum Age & Weight=[24.0, 120.0]
 ~~~
+
+## Exporting a DataFrame to a Specific File
+
+You can easily export your given dataframe to a Text, CSV, or JSON file. Remember, any data processing (filtering, grouping, dropping, etc) you applied to your given dataframe will be saved as how it was manipulated.
+
+**Exporting to a Text File**
+~~~java
+//Defined Data
+ Map<String, List<Object>> dataframeMap = new LinkedHashMap<>(Map.of(
+                "Weight", List.of(125, 120, 130, 180, 150, 185),
+                "Age", List.of(28, 33, 24, 31, 26, 32),
+                "Name", List.of("Ben", "Jenny", "Mark", "Daniel", "Evan", "Jacob")));
+//Defined DataFrame
+JDataFrame dataFrame = JDataFrame.builder().fromData(dataframeMap).build();
+
+//Exporting our dataframe to a text file
+dataFrame.exportToTXT('myfile.txt');
+~~~
+
+Saved Text File:
+~~~markdown
+-------
+Name:Ben
+Age:28
+Weight:125
+-------
+Name:Jenny
+Age:33
+Weight:120
+-------
+Name:Mark
+Age:24
+Weight:130
+-------
+Name:Daniel
+Age:31
+Weight:180
+-------
+Name:Evan
+Age:26
+Weight:150
+-------
+Name:Jacob
+Age:32
+Weight:185
+-------
+~~~
+
+**Exporting to a CSV File**
+
+~~~java
+//Defined Data
+ Map<String, List<Object>> dataframeMap = new LinkedHashMap<>(Map.of(
+                "Weight", List.of(125, 120, 130, 180, 150, 185),
+                "Age", List.of(28, 33, 24, 31, 26, 32),
+                "Name", List.of("Ben", "Jenny", "Mark", "Daniel", "Evan", "Jacob")));
+//Defined DataFrame
+JDataFrame dataFrame = JDataFrame.builder().fromData(dataframeMap).build();
+
+//Exporting our dataframe to a text file
+dataFrame.exportToCSV('myfile.csv');
+~~~
+
+Saved CSV File:
+~~~markdown
+Name,Age,Weight
+Ben,28,125,
+Jenny,33,120,
+Mark,24,130,
+Daniel,31,180,
+Evan,26,150,
+Jacob,32,185,
+~~~
+
+**Exporting to a JSON File**
+
+~~~java
+//Defined Data
+ Map<String, List<Object>> dataframeMap = new LinkedHashMap<>(Map.of(
+                "Weight", List.of(125, 120, 130, 180, 150, 185),
+                "Age", List.of(28, 33, 24, 31, 26, 32),
+                "Name", List.of("Ben", "Jenny", "Mark", "Daniel", "Evan", "Jacob")));
+//Defined DataFrame
+JDataFrame dataFrame = JDataFrame.builder().fromData(dataframeMap).build();
+
+//Exporting our dataframe to a text file
+dataFrame.exportToJSON('myfile.json');
+~~~
+
+Saved JSON File:
+~~~markdown
+[
+  {
+    "Weight": 125,
+    "Name": "Ben",
+    "Age": 28
+  },
+  {
+    "Weight": 120,
+    "Name": "Jenny",
+    "Age": 33
+  },
+  {
+    "Weight": 130,
+    "Name": "Mark",
+    "Age": 24
+  },
+  {
+    "Weight": 180,
+    "Name": "Daniel",
+    "Age": 31
+  },
+  {
+    "Weight": 150,
+    "Name": "Evan",
+    "Age": 26
+  },
+  {
+    "Weight": 185,
+    "Name": "Jacob",
+    "Age": 32
+  }
+]
+~~~
+
 
 ## Reporting Bugs
 If you happen to find a bug using JDataFrame please report them [here](https://github.com/dug22/JDataFrame/issues).

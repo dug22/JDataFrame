@@ -400,14 +400,14 @@ Minimum Age & Weight=[24.0, 120.0]
 ~~~
 
 ## Reporting Bugs
-If you happen to find a bug using JDataFrame please report them [here](https://github.com/dug22/JDataFrame/issues)
+If you happen to find a bug using JDataFrame please report them [here](https://github.com/dug22/JDataFrame/issues).
 
 ## Contributions
 I intend to continuously enhance JDataFrame by incorporating new features, including:
 
-- Enabling users to export data in CSV, JSON, and TXT formats
-- Expanding the range of statistical functions available
-- Potentially introducing basic plotting capabilities
+- Enabling users to export data in CSV, JSON, and TXT files.
+- Expanding the range of statistical functions available.
+- Potentially introducing basic plotting capabilities.
   
 If you have any ideas of your own please share them by posting them [here](https://github.com/dug22/JDataFrame/issues). Any contributions to this project are always welcomed!
 Be aware to check recent issues or pull requests to see if a given feature was added or not. 

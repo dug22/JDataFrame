@@ -20,6 +20,7 @@ JDataFrame short for Java DataFrame is a simple and easy-to-use dataframe librar
 * Group, filter, drop, and display results for one or multiple columns.
 * Extract statistics from one or multiple columns.
   * Statistic functions supported: sum, mean, mode, median, min, max, and range.
+* Export DataFrames to a TXT, CSV, or JSON file.
 
 ### Getting started:
 If you're using Maven, add JDataFrame to your given project's pom.xml. Copy and paste the given dependency into your pom.xml.

@@ -32,7 +32,7 @@ class DataFrameTest {
         System.out.println("-".repeat(100));
         try {
 
-            JDataFrame employeeData = JDataFrame.builder().fromCSV("D:\\JDataFrame\\src\\main\\resources\\employee_data.csv").filter(List.of("Age", "Department"), (FilterPredicate<Map<String, Object>>) row -> {
+            JDataFrame employeeData = JDataFrame.builder().fromCSV("E:\\employee_data.csv").filter(List.of("Age", "Department"), (FilterPredicate<Map<String, Object>>) row -> {
                 String ageString = (String) row.get("Age");
                 int age = Integer.parseInt(ageString);
                 String department = (String) row.get("Department");

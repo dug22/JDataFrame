@@ -2,6 +2,9 @@ package io.github.dug22.jdataframe;
 
 import io.github.dug22.jdataframe.operations.statistics.Statistics;
 import io.github.dug22.jdataframe.util.CSVUtils;
+import io.github.dug22.jdataframe.util.JSONUtils;
+import io.github.dug22.jdataframe.util.TextUtils;
+
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -121,6 +124,29 @@ public class JDataFrame implements DataFrame {
         return Statistics.valueOf(function).calculate(dataFrameMap, columns);
     }
 
+    /**
+     * Exports a dataframe to a TXT file.
+     * @param filePath the path of the destined TXT file.
+     */
+    public void exportToTXT(String filePath){
+        TextUtils.writeToTXTFile(filePath, dataFrameMap);
+    }
+
+    /**
+     * Exports a dataframe to a CSV file
+     * @param filePath the path of the destined CSV file.
+     */
+    public void exportToCSV(String filePath){
+        CSVUtils.writeToCSV(filePath, dataFrameMap);
+    }
+
+    /**
+     * Exports a dataframe to a JSON file
+     * @param filePath the path of the destined JSON file.
+     */
+    public void exportToJSON(String filePath){
+        JSONUtils.writeToJSONFile(filePath, dataFrameMap);
+    }
     /**
      * A private helper method that displays a range of rows from the DataFrame.
      *

@@ -26,7 +26,7 @@
 ## Setup
 First, JDataFrame requires Java 21 or newer.
 
-Second, you need to add the following dependency to you pom.xml file. 
+Second, you need to add the following dependency to your pom.xml file. 
 
 ~~~xml
 <dependency>

@@ -13,14 +13,18 @@ JDataFrame short for Java DataFrame is a simple and easy-to-use dataframe librar
 
 ### Dependencies JDataFrame Uses
 * JDataFrame v1.0.3+ uses the latest version of [Gson's](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.11.0) library.
+* JDataFrame v1.0.4+ uses the latest version of [chart.js](https://github.com/chartjs/Chart.js)
   
 ### JDataFrame Features
 **Data manipulation & transformation**
 * Import data from hard-coded data and CSV files.
-* Group, filter, drop, and display results for one or multiple columns.
+* Group, filter, drop, replace, and display results for one or multiple columns.
 * Extract statistics from one or multiple columns.
   * Statistic functions supported: sum, mean, mode, median, min, max, and range.
 * Export DataFrames to a TXT, CSV, or JSON file.
+
+**Visualization**
+JDataFrame supports basic data visualization by sending your preconfigured conditions in JSON format, with Chart.js handling the rest.
 
 ### Getting started:
 If you're using Maven, add JDataFrame to your given project's pom.xml. Copy and paste the given dependency into your pom.xml.

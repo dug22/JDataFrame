@@ -13,8 +13,12 @@
       * [Dropping Multiple Columns From a DataFrame](#dropping-multiple-columns-from-a-dataframe)
       * [Dropping Null Values From a DataFrame](#dropping-null-values-from-a-dataframe)
    * [Grouping Columns Within a DataFrame](#grouping-columns-within-a-dataframe)
+   * [JDataFrame Replace](#jdataframe-replace)
+     * [Replacing a Column's Value and Updating it](#replacing-a-column's-value-and-updating-it)
+     * [Replacing Multiple Columns Values and Updating it](#replacing-multiple-columns-values-and-updating-it)
    * [Statistic Functions](#statistic-functions)
    * [Exporting a DataFrame to a Specific File](#exporting-a-dataframe-to-a-specific-file)
+   * [Visualizing Data with JDataFrame](#visualizing-data-with-jdataframe)
 4. [Reporting Bugs](#reporting-bugs)
 5. [Contributions](#contributions)
 
@@ -307,7 +311,7 @@ Weight, Name, Age
 ~~~
 
 ## Grouping Columns Within a DataFrame
-Grouping groups the dataframe by a specific column. Grouping aggregates rows by the unique values in the give column, and restructures the DataFrame accordingly
+Grouping organizes the DataFrame by a specified column or columns, enabling operations to be applied separately to each group
 
 Here is an example of grouping a dataframe based on a single column with an applied filter chained to it.
 ~~~java
@@ -336,6 +340,135 @@ Name, Age, Weight
 Jenny, 33, 120
 Daniel, 31, 180
 Jacob, 32, 185
+~~~
+
+## JDataFrame Replace
+JDataFrame's replace function updates the value of specific rows in one or more specified columns with the provided index and new data. We need to specify the target column, its index, and the new data value when using the JDataFrame's replace function.
+
+## Replacing a Column's Value and Updating it
+Here's an example of replacing and updating data in a specific row of a column.
+~~~
+//Defined Data
+Map<String, List<Object>> dataframeMap = Map.of(
+                "Weight", new ArrayList<>(Arrays.asList(150, 200, 170, 195, 205, 185)),
+                "Age", new ArrayList<>(Arrays.asList(28, 29, 24, 31, 26, 27)),
+                "Name", new ArrayList<>(Arrays.asList("Abby", "Bob", "Carlos", "Daniel", "Evan", "Finn"))
+        );
+//Column
+String column = "Age";
+//Index
+int index = 3;
+//New row data
+Object newValue = 26;
+
+//Defined dataframe with the applied replace function
+JDataFrame dataFrame = JDataFrame.builder().fromData(dataframeMap).replace(column, index, newValue).build();
+
+//Displaying the given dataframe
+dataFrame.show();
+~~~
+
+Above we are replacing Daniel's Age value of 24 with a new data value of 26. 
+
+~~~markdown
+Name, Age, Weight
+Abby, 28, 150
+Bob, 29, 200
+Carlos, 24, 170
+Daniel, 26, 195
+Evan, 26, 205
+Finn, 27, 185
+~~~
+
+It is really that simple. Now I'll go over how we can update multiple values in a dataframe based on specified columns, row indexes, and new values.
+
+## Replacing Multiple Columns Values and Updating it
+
+Here's an example of replacing and updating data in multiple specific rows of multiple columns column.
+~~~java
+//Defined Data
+Map<String, List<Object>> dataframeMap = Map.of(
+                "Weight", new ArrayList<>(Arrays.asList(150, 200, 170, 195, 205, 185)),
+                "Age", new ArrayList<>(Arrays.asList(28, 29, 24, 31, 26, 27)),
+                "Name", new ArrayList<>(Arrays.asList("Abby", "Bob", "Carlos", "Daniel", "Evan", "Finn"))
+        );
+//Columns
+List<String> columns = new ArrayList<>(Arrays.asList("Age", "Weight"));
+//Indexes
+List<Integer> indexes = new ArrayList<>(Arrays.asList(0, 0));
+//New row data
+List<Object> newValues = new ArrayList<>(Arrays.asList(27, 135));
+
+//Defined dataframe with the applied replace function
+JDataFrame dataFrame = JDataFrame.builder().fromData(dataframeMap).replace(columns, indexes, newValues).build();
+
+//Displaying the given dataframe
+dataFrame.show();
+~~~
+
+Above we are replacing Abby's Age value of 28 with a new data value of 27. We are also replacing Abby's Weight value of 150 with a new data value of 135.
+
+~~~markdown
+Age, Weight, Name
+27, 135, Abby
+29, 200, Bob
+24, 170, Carlos
+31, 195, Daniel
+26, 205, Evan
+27, 185, Finn
+~~~
+
+Replacing really comes in handy if you want to update specifc column row data, and with JDataFrame its really that simple!
+
+## Visualizing Data with JDataFrame
+
+JDataFrame supports basic data visualization by sending your preconfigured conditions in JSON format, with Chart.js handling the rest. JDataFrame currently supports creating line, bar, and radar charts. Anytime you create a chart it will be saved as an HTML file, and from there you can open up that file and visualize what your charts look like. Below I will show you an example on we can create a line graph like this using JDataFrame.
+![Image](https://i.imgur.com/wEgKfhy.png)
+
+~~~java
+ public static void main(String[] args) throws Exception {
+        // Adding data for Employees and their sales for 9 months
+        Map<String, List<Object>> dataframeMap = Map.ofEntries(
+                Map.entry("Employee", Arrays.asList("Employee A", "Employee B", "Employee C", "Employee D", "Employee E", "Employee F", "Employee G", "Employee H", "Employee I")),
+                Map.entry("January", Arrays.asList(1200, 1100, 1300, 1400, 1250, 1050, 950, 1600, 1700)),
+                Map.entry("February", Arrays.asList(1250, 1150, 1350, 1450, 1300, 1080, 980, 1650, 1750)),
+                Map.entry("March", Arrays.asList(1300, 1200, 1400, 1500, 1350, 1100, 1000, 1700, 1800)),
+                Map.entry("April", Arrays.asList(1350, 1250, 1450, 1550, 1400, 1120, 1020, 1750, 1850)),
+                Map.entry("May", Arrays.asList(1400, 1300, 1500, 1600, 1450, 1140, 1040, 1800, 1900)),
+                Map.entry("June", Arrays.asList(1450, 1350, 1550, 1650, 1500, 1160, 1060, 1850, 1950)),
+                Map.entry("July", Arrays.asList(1500, 1400, 1600, 1700, 1550, 1180, 1080, 1900, 2000)),
+                Map.entry("August", Arrays.asList(1550, 1450, 1650, 1750, 1600, 1200, 1100, 1950, 2050)),
+                Map.entry("September", Arrays.asList(1600, 1500, 1700, 1800, 1650, 1220, 1120, 2000, 2100))
+        );
+
+
+        //Defined dataframe object
+        JDataFrame dataFrame = JDataFrame.builder().fromData(dataframeMap).build();
+
+        //Defined colors for our Y Data.
+        List<String> colors = Arrays.asList(
+                "rgba(75, 192, 92, 0.9)",  // Green for Employee A
+                "rgba(255, 99, 132, 0.9)", // Red for Employee B
+                "rgba(54, 162, 235, 0.9)", // Blue for Employee C
+                "rgba(153, 102, 255, 0.9)", // Purple for Employee D
+                "rgba(255, 159, 64, 0.9)", // Orange for Employee E
+                "rgba(255, 205, 86, 0.9)", // Yellow for Employee F
+                "rgba(75, 192, 192, 0.9)", // Teal for Employee G
+                "rgba(255, 159, 164, 0.9)", // Pink for Employee H
+                "rgba(153, 255, 51, 0.9)"); // Lime for Employee I
+
+        ChartGenerator.generateChart(
+                "chart.html", //Generated HTML File
+                "line", //chart type
+                "Employee Sales Performance (January - September)", //chart title
+                dataFrame.getDataFrameMap(),  // Our given dataframe map
+                "Employee", //X Column
+                Arrays.asList("January", "February", "March", "April", "May", "June", "July", "August", "September"), //Y Columns
+                "Employees", //X-Axis Label
+                "Sales ($)", //Y-Axis Label
+                colors); //Predefined colors
+    }
+}
 ~~~
 
 ## Statistic Functions

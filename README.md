@@ -26,7 +26,10 @@ JDataFrame short for Java DataFrame is a simple and easy-to-use dataframe librar
 **Visualization**
 
 JDataFrame supports basic data visualization by sending your preconfigured conditions in JSON format, with Chart.js handling the rest.
-
+Currently supports: line, bar, and radar.
+| ![Image](https://i.imgur.com/BJoiade.png) | ![Image](https://i.imgur.com/tQUlTb3.png) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![Image](https://i.imgur.com/wEgKfhy.png) | ![Image](https://i.imgur.com/iEOZUkq.png) |
 ### Getting started:
 If you're using Maven, add JDataFrame to your given project's pom.xml. Copy and paste the given dependency into your pom.xml.
 ~~~xml

@@ -24,6 +24,7 @@ JDataFrame short for Java DataFrame is a simple and easy-to-use dataframe librar
 * Export DataFrames to a TXT, CSV, or JSON file.
 
 **Visualization**
+
 JDataFrame supports basic data visualization by sending your preconfigured conditions in JSON format, with Chart.js handling the rest.
 
 ### Getting started:

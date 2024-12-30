@@ -66,4 +66,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 
 ### Currently Working On:
 * More Documentation.
+* Implement basic plotting concepts.
 * Add more statistic functions. 

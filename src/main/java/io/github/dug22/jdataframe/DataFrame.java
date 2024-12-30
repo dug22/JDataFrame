@@ -1,6 +1,7 @@
 package io.github.dug22.jdataframe;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DataFrame {
 
@@ -65,6 +66,20 @@ public interface DataFrame {
      * @return a list of results for each column
      */
     List<Double> findStat(String function, List<String> columns);
+
+    /**
+     * Generates summary statistics (sum, mean, mode, median, max, min, range, and std) for a numerical column in a DataFrame
+     * @param column the name of the column to calculate the statistic for
+     * @return the general summary statistics for a numerical column in a dataframe.
+     */
+    Map<String, Object> describeStats(String column);
+
+    /**
+     * Generates summary statistics (sum, mean, mode, median, max, min, range, and std) for multiple numerical columns in a DataFrame
+     * @param columns the name of the columns to calculate the statistic for
+     * @return the general summary statistics for multiple numerical columns in a dataframe.
+     */
+    Map<String, Map<String, Object>> describeStats(List<String> columns);
 
     /**
      * Exports a dataframe to a TXT file.

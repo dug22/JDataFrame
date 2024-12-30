@@ -106,7 +106,7 @@ public class JDataFrame implements DataFrame {
      * Calculates a statistical value (e.g., sum, mean) for a given column.
      *
      * @param function the name of the statistical function to apply (e.g., "SUM", "MEAN")
-     * @param column the column name on which the statistical function is applied
+     * @param column   the column name on which the statistical function is applied
      * @return the result of the statistical calculation
      */
     @Override
@@ -118,7 +118,7 @@ public class JDataFrame implements DataFrame {
      * Calculates a statistical value for multiple columns.
      *
      * @param function the name of the statistical function to apply
-     * @param columns a list of column names for which to apply the statistical function
+     * @param columns  a list of column names for which to apply the statistical function
      * @return a list of results for each column
      */
     @Override
@@ -127,36 +127,60 @@ public class JDataFrame implements DataFrame {
     }
 
     /**
+     * Generates summary statistics (sum, mean, mode, median, max, min, range, and std) for a numerical column in a DataFrame
+     * @param column the name of the column to calculate the statistic for
+     * @return the general summary statistics for a numerical column in a dataframe.
+     */
+    @Override
+    public Map<String, Object> describeStats(String column) {
+        return Statistics.describe(dataFrameMap, column);
+    }
+
+    /**
+     * Generates summary statistics (sum, mean, mode, median, max, min, range, and std) for multiple numerical columns in a DataFrame
+     * @param columns the name of the columns to calculate the statistic for
+     * @return the general summary statistics for multiple numerical columns in a dataframe.
+     */
+    @Override
+    public Map<String, Map<String, Object>> describeStats(List<String> columns) {
+        return Statistics.describe(dataFrameMap, columns);
+    }
+
+    /**
      * Exports a dataframe to a TXT file.
+     *
      * @param filePath the path of the destined TXT file.
      */
     @Override
-    public void exportToTXT(String filePath){
+    public void exportToTXT(String filePath) {
         TextUtils.writeToTXTFile(filePath, dataFrameMap);
     }
 
     /**
      * Exports a dataframe to a CSV file
+     *
      * @param filePath the path of the destined CSV file.
      */
     @Override
-    public void exportToCSV(String filePath){
+    public void exportToCSV(String filePath) {
         CSVUtils.writeToCSV(filePath, dataFrameMap);
     }
 
     /**
      * Exports a dataframe to a JSON file
+     *
      * @param filePath the path of the destined JSON file.
      */
     @Override
-    public void exportToJSON(String filePath){
+    public void exportToJSON(String filePath) {
         JSONUtils.writeToJSONFile(filePath, dataFrameMap);
     }
+
     /**
      * A private helper method that displays a range of rows from the DataFrame.
      *
      * @param start the starting index of the rows to display
-     * @param end the ending index (exclusive) of the rows to display
+     * @param end   the ending index (exclusive) of the rows to display
      */
     private void displayRows(int start, int end) {
         List<String> columns = new ArrayList<>(dataFrameMap.keySet());
@@ -183,5 +207,9 @@ public class JDataFrame implements DataFrame {
                     .map(String::valueOf)
                     .collect(Collectors.joining(", ")));
         }
+    }
+
+    public Map<String, List<Object>> getDataFrameMap() {
+        return dataFrameMap;
     }
 }

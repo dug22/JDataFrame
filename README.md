@@ -4,7 +4,7 @@ JDataFrame
 ![Stars](https://img.shields.io/github/stars/dug22/jdataframe.svg)
 ### Overview
 <p align="justify">
-JDataFrame short for Java DataFrame is a simple and easy-to-use dataframe library for Java. JDataFrame can be used to manipulate, filter, and extract statistics from specific columns within large tabular datasets, including both hard-coded data and CSV files. 
+JDataFrame short for Java DataFrame is a simple and easy-to-use dataframe library for Java. JDataFrame can be used to manipulate, filter, visualize, and extract statistics from specific columns within large tabular datasets, including both hard-coded data and CSV files. 
 </p>
 
 ### Requirements
@@ -20,7 +20,7 @@ JDataFrame short for Java DataFrame is a simple and easy-to-use dataframe librar
 * Import data from hard-coded data and CSV files.
 * Group, filter, drop, replace, and display results for one or multiple columns.
 * Extract statistics from one or multiple columns.
-  * Statistic functions supported: sum, mean, mode, median, min, max, and range.
+  * Statistic functions supported: sum, mean, mode, median, min, max, range, and standard deviation.
 * Export DataFrames to a TXT, CSV, or JSON file.
 
 **Visualization**
@@ -74,5 +74,4 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 
 ### Currently Working On:
 * More Documentation.
-* Implement basic plotting concepts.
 * Add more statistic functions. 

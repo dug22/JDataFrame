@@ -422,7 +422,7 @@ Replacing really comes in handy if you want to update specifc column row data, a
 
 ## Visualizing Data with JDataFrame
 
-JDataFrame supports basic data visualization by sending your preconfigured conditions in JSON format, with Chart.js handling the rest. JDataFrame currently supports creating line, bar, radar, pie, and doughnut charts. Anytime you create a chart it will be saved as an HTML file, and from there you can open up that file and visualize what your charts look like. Below I will show you an example on we can create a line, bar, radar, pie, and doughnut charts using JDataFrame.
+JDataFrame supports basic data visualization by sending your preconfigured conditions in JSON format, with Chart.js handling the rest. JDataFrame currently supports creating line, bar, radar, pie, and doughnut charts. Anytime you create a chart it will be saved as an HTML file, and from there you can open up that file and visualize what your charts look like. Below I will show you an example on how we can create a line, bar, radar, pie, and doughnut charts using JDataFrame.
 
 **Creating a Line Chart**
 ~~~java

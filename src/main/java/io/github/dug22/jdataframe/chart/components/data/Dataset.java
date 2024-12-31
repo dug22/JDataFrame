@@ -6,7 +6,7 @@ public class Dataset {
 
     private String label;
     private List<Number> data;
-    private String backgroundColor;
+    private Object backgroundColor;
     private String borderColor;
     private int borderWidth;
 
@@ -26,11 +26,11 @@ public class Dataset {
         this.data = data;
     }
 
-    public String getBackgroundColor() {
+    public Object getBackgroundColor() {
         return backgroundColor;
     }
 
-    public void setBackgroundColor(String backgroundColor) {
+    public void setBackgroundColor(Object backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
 

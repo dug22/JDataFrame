@@ -20,12 +20,11 @@ public class ChartGenerator {
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     /**
-     * Generates a chart and writes it to an HTML file.
+     * Generates a line chart and writes it to an HTML file.
      *
      * @param filePath The file path where the HTML will be saved.
-     * @param chartType The type of chart (e.g., "bar", "line").
      * @param title The chart's title.
-     * @param dataFrame The data for the chart (column -> values map).
+     * @param dataFrameMap The data for the chart (column -> values map).
      * @param xColumn  The column used for the x-axis labels.
      * @param yColumns The list of columns used for the y-axis datasets.
      * @param xAxisLabel The label for the x-axis.
@@ -33,18 +32,142 @@ public class ChartGenerator {
      * @param colors A list of color strings for the datasets.
      * @throws Exception If an error occurs during file writing.
      */
-    public static void generateChart(
+    public static void generateLineChart(
+            String filePath,
+            String title,
+            String legendPosition,
+            Map<String, List<Object>> dataFrameMap,
+            String xColumn,
+            List<String> yColumns,
+            String xAxisLabel,
+            String yAxisLabel,
+            List<String> colors) throws Exception {
+        generateChart(filePath, "line", title, legendPosition, dataFrameMap, xColumn, yColumns, xAxisLabel, yAxisLabel, colors);
+    }
+
+    /**
+     * Generates a bar chart and writes it to an HTML file.
+     *
+     * @param filePath The file path where the HTML will be saved.
+     * @param title The chart's title.
+     * @param dataFrameMap The data for the chart (column -> values map).
+     * @param xColumn  The column used for the x-axis labels.
+     * @param yColumns The list of columns used for the y-axis datasets.
+     * @param xAxisLabel The label for the x-axis.
+     * @param yAxisLabel The label for the y-axis.
+     * @param colors A list of color strings for the datasets.
+     * @throws Exception If an error occurs during file writing.
+     */
+    public static void generateBarChart(
+            String filePath,
+            String title,
+            String legendPosition,
+            Map<String, List<Object>> dataFrameMap,
+            String xColumn,
+            List<String> yColumns,
+            String xAxisLabel,
+            String yAxisLabel,
+            List<String> colors) throws Exception {
+        generateChart(filePath, "bar", title, legendPosition, dataFrameMap, xColumn, yColumns, xAxisLabel, yAxisLabel, colors);
+    }
+
+    /**
+     * Generates a radar chart and writes it to an HTML file.
+     *
+     * @param filePath The file path where the HTML will be saved.
+     * @param title The chart's title.
+     * @param dataFrameMap The data for the chart (column -> values map).
+     * @param xColumn  The column used for the x-axis labels.
+     * @param yColumns The list of columns used for the y-axis datasets.
+     * @param xAxisLabel The label for the x-axis.
+     * @param yAxisLabel The label for the y-axis.
+     * @param colors A list of color strings for the datasets.
+     * @throws Exception If an error occurs during file writing.
+     */
+    public static void generateRadarChart(
+            String filePath,
+            String title,
+            String legendPosition,
+            Map<String, List<Object>> dataFrameMap,
+            String xColumn,
+            List<String> yColumns,
+            String xAxisLabel,
+            String yAxisLabel,
+            List<String> colors) throws Exception {
+        generateChart(filePath, "radar", title, legendPosition, dataFrameMap, xColumn, yColumns, xAxisLabel, yAxisLabel, colors);
+    }
+
+    /**
+     * Generates a pie  chart and writes it to an HTML file.
+     *
+     * @param filePath The file path where the HTML will be saved.
+     * @param title The chart's title.
+     * @param dataFrameMap The data for the chart (column -> values map).
+     * @param xColumn  The column used for the x-axis labels.
+     * @param colors A list of color strings for the datasets.
+     * @throws Exception If an error occurs during file writing.
+     */
+    public static void generatePieChart(
+            String filePath,
+            String title,
+            String legendPosition,
+            Map<String, List<Object>> dataFrameMap,
+            String xColumn,
+            String yColumn,
+            List<String> colors) throws Exception {
+        generateChart(filePath, "pie", title, legendPosition, dataFrameMap, xColumn, List.of(yColumn), null, null, colors);
+    }
+
+    /**
+     * Generates a doughnut chart and writes it to an HTML file.
+     *
+     * @param filePath The file path where the HTML will be saved.
+     * @param title The chart's title.
+     * @param dataFrameMap The data for the chart (column -> values map).
+     * @param xColumn  The column used for the x-axis labels.
+     * @param colors A list of color strings for the datasets.
+     * @throws Exception If an error occurs during file writing.
+     */
+    public static void generateDoughnutChart(
+            String filePath,
+            String title,
+            String legendPosition,
+            Map<String, List<Object>> dataFrameMap,
+            String xColumn,
+            String yColumn,
+            List<String> colors
+    ) throws Exception {
+        generateChart(filePath, "doughnut", title, legendPosition, dataFrameMap, xColumn, List.of(yColumn), null, null, colors);
+
+    }
+
+    /**
+     * Generates a chart and writes it to an HTML file.
+     *
+     * @param filePath The file path where the HTML will be saved.
+     * @param chartType The type of chart (e.g., "bar", "line").
+     * @param title The chart's title.
+     * @param dataFrameMap The data for the chart (column -> values map).
+     * @param xColumn  The column used for the x-axis labels.
+     * @param yColumns The list of columns used for the y-axis datasets.
+     * @param xAxisLabel The label for the x-axis.
+     * @param yAxisLabel The label for the y-axis.
+     * @param colors A list of color strings for the datasets.
+     * @throws Exception If an error occurs during file writing.
+     */
+    private static void generateChart(
             String filePath,
             String chartType,
             String title,
-            Map<String, List<Object>> dataFrame,
+            String legendPosition,
+            Map<String, List<Object>> dataFrameMap,
             String xColumn,
             List<String> yColumns,
             String xAxisLabel,
             String yAxisLabel,
             List<String> colors) throws Exception {
 
-        ChartConfig chartConfig = buildChartConfig(chartType, title, dataFrame, xColumn, yColumns, xAxisLabel, yAxisLabel, colors);
+        ChartConfig chartConfig = buildChartConfig(chartType, title, legendPosition, dataFrameMap, xColumn, yColumns, xAxisLabel, yAxisLabel, colors);
 
         String chartConfigJson = gson.toJson(chartConfig);
 
@@ -73,6 +196,7 @@ public class ChartGenerator {
     private static ChartConfig buildChartConfig(
             String chartType,
             String title,
+            String legendPosition,
             Map<String, List<Object>> dataFrame,
             String xColumn,
             List<String> yColumns,
@@ -97,12 +221,21 @@ public class ChartGenerator {
             Dataset dataset = new Dataset();
             dataset.setLabel(yColumn);
             dataset.setData(yData.stream().map(v -> ((Number) v).doubleValue()).collect(Collectors.toList()));
-            String backgroundColor = (colorIndex < colors.size()) ? colors.get(colorIndex) : generateRandomColor();
-            String borderColor = (colorIndex < colors.size()) ? colors.get(colorIndex) : generateRandomColor();
 
-            dataset.setBackgroundColor(backgroundColor);
-            dataset.setBorderColor(borderColor);
-            dataset.setBorderWidth(1);
+            if (chartType.equalsIgnoreCase("pie") || chartType.equalsIgnoreCase("doughnut")) {
+                List<String> dataColors = new ArrayList<>();
+                for (int i = 0; i < yData.size(); i++) {
+                    String color = (i < colors.size()) ? colors.get(i) : generateRandomColor();
+                    dataColors.add(color);
+                }
+                dataset.setBackgroundColor(dataColors);
+            } else {
+                String backgroundColor = (colorIndex < colors.size()) ? colors.get(colorIndex) : generateRandomColor();
+                String borderColor = (colorIndex < colors.size()) ? colors.get(colorIndex) : generateRandomColor();
+                dataset.setBackgroundColor(backgroundColor);
+                dataset.setBorderColor(borderColor);
+                dataset.setBorderWidth(1);
+            }
 
             datasets.add(dataset);
             colorIndex++;
@@ -117,27 +250,31 @@ public class ChartGenerator {
 
         PluginLegend pluginLegend = new PluginLegend();
         pluginLegend.setDisplay(true);
-        pluginLegend.setPosition("top");
+        pluginLegend.setPosition(legendPosition);
 
         ChartPlugins plugins = new ChartPlugins();
         plugins.setTitle(pluginTitle);
         plugins.setLegend(pluginLegend);
         options.setPlugins(plugins);
 
-        Axis xAxis = new Axis();
-        xAxis.setTitle(new AxisTitle());
-        xAxis.getTitle().setDisplay(true);
-        xAxis.getTitle().setText(xAxisLabel);
+        if (!chartType.equalsIgnoreCase("pie") && !chartType.equalsIgnoreCase("doughnut")) {
+            Axis xAxis = new Axis();
+            xAxis.setTitle(new AxisTitle());
+            xAxis.getTitle().setDisplay(true);
+            xAxis.getTitle().setText(xAxisLabel);
 
-        Axis yAxis = new Axis();
-        yAxis.setTitle(new AxisTitle());
-        yAxis.getTitle().setDisplay(true);
-        yAxis.getTitle().setText(yAxisLabel);
+            Axis yAxis = new Axis();
+            yAxis.setTitle(new AxisTitle());
+            yAxis.getTitle().setDisplay(true);
+            yAxis.getTitle().setText(yAxisLabel);
 
-        options.setScales(Map.of("x", xAxis, "y", yAxis));
+            options.setScales(Map.of("x", xAxis, "y", yAxis));
+        }
+
         ChartData chartData = new ChartData();
         chartData.setLabels(xData);
         chartData.setDatasets(datasets);
+
         ChartConfig chartConfig = new ChartConfig();
         chartConfig.setType(chartType);
         chartConfig.setData(chartData);

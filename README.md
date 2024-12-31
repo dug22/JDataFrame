@@ -20,7 +20,7 @@ JDataFrame short for Java DataFrame is a simple and easy-to-use dataframe librar
 * Import data from hard-coded data and CSV files.
 * Group, filter, drop, replace, and display results for one or multiple columns.
 * Extract statistics from one or multiple columns.
-  * Statistic functions supported: sum, mean, mode, median, min, max, range, and standard deviation.
+  * Statistic functions supported: sum, mean, mode, median, min, max, range, standard deviation, and description (get a general statistics summary from one or more columns).
 * Export DataFrames to a TXT, CSV, or JSON file.
 
 **Visualization**

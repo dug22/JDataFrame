@@ -422,9 +422,9 @@ Replacing really comes in handy if you want to update specifc column row data, a
 
 ## Visualizing Data with JDataFrame
 
-JDataFrame supports basic data visualization by sending your preconfigured conditions in JSON format, with Chart.js handling the rest. JDataFrame currently supports creating line, bar, and radar charts. Anytime you create a chart it will be saved as an HTML file, and from there you can open up that file and visualize what your charts look like. Below I will show you an example on we can create a line chart like this using JDataFrame.
-![Image](https://i.imgur.com/wEgKfhy.png)
+JDataFrame supports basic data visualization by sending your preconfigured conditions in JSON format, with Chart.js handling the rest. JDataFrame currently supports creating line, bar, radar, pie, and doughnut charts. Anytime you create a chart it will be saved as an HTML file, and from there you can open up that file and visualize what your charts look like. Below I will show you an example on we can create a line, bar, radar, pie, and doughnut charts using JDataFrame.
 
+**Creating a Line Chart**
 ~~~java
  public static void main(String[] args) throws Exception {
         // Adding data for Employees and their sales for 9 months
@@ -441,10 +441,6 @@ JDataFrame supports basic data visualization by sending your preconfigured condi
                 Map.entry("September", Arrays.asList(1600, 1500, 1700, 1800, 1650, 1220, 1120, 2000, 2100))
         );
 
-
-        //Defined dataframe object
-        JDataFrame dataFrame = JDataFrame.builder().fromData(dataframeMap).build();
-
         //Defined colors for our Y Data.
         List<String> colors = Arrays.asList(
                 "rgba(75, 192, 92, 0.9)",  // Green for Employee A
@@ -457,11 +453,12 @@ JDataFrame supports basic data visualization by sending your preconfigured condi
                 "rgba(255, 159, 164, 0.9)", // Pink for Employee H
                 "rgba(153, 255, 51, 0.9)"); // Lime for Employee I
 
-        ChartGenerator.generateChart(
+         //Line chart generator method
+         ChartGenerator.generateLineChart(
                 "chart.html", //Generated HTML File
-                "line", //chart type
                 "Employee Sales Performance (January - September)", //chart title
-                dataFrame.getDataFrameMap(),  // Our given dataframe map
+                "right", //Legend position
+                dataframeMap,  //Our given dataframe map (we do not need a dataframe object. No manipulation is taking place.)
                 "Employee", //X Column
                 Arrays.asList("January", "February", "March", "April", "May", "June", "July", "August", "September"), //Y Columns
                 "Employees", //X-Axis Label
@@ -471,6 +468,122 @@ JDataFrame supports basic data visualization by sending your preconfigured condi
 }
 ~~~
 
+![Image](https://i.imgur.com/wEgKfhy.png)
+
+**Creating a Bar Chart**
+~~~java
+public static void main(String[] args) throws Exception {
+        // Adding data for Employees and their sales for 9 months
+        Map<String, List<Object>> dataframeMap = Map.ofEntries(
+                Map.entry("Employee", Arrays.asList("Employee A", "Employee B", "Employee C", "Employee D", "Employee E", "Employee F", "Employee G", "Employee H", "Employee I")),
+                Map.entry("January", Arrays.asList(1200, 1100, 1300, 1400, 1250, 1050, 950, 1600, 1700)),
+                Map.entry("February", Arrays.asList(1250, 1150, 1350, 1450, 1300, 1080, 980, 1650, 1750)),
+                Map.entry("March", Arrays.asList(1300, 1200, 1400, 1500, 1350, 1100, 1000, 1700, 1800)),
+                Map.entry("April", Arrays.asList(1350, 1250, 1450, 1550, 1400, 1120, 1020, 1750, 1850)),
+                Map.entry("May", Arrays.asList(1400, 1300, 1500, 1600, 1450, 1140, 1040, 1800, 1900)),
+                Map.entry("June", Arrays.asList(1450, 1350, 1550, 1650, 1500, 1160, 1060, 1850, 1950)),
+                Map.entry("July", Arrays.asList(1500, 1400, 1600, 1700, 1550, 1180, 1080, 1900, 2000)),
+                Map.entry("August", Arrays.asList(1550, 1450, 1650, 1750, 1600, 1200, 1100, 1950, 2050)),
+                Map.entry("September", Arrays.asList(1600, 1500, 1700, 1800, 1650, 1220, 1120, 2000, 2100))
+        );
+
+
+
+        //Defined colors for our Y Data.
+        List<String> colors = Arrays.asList(
+                "rgba(75, 192, 92, 0.9)",  // Green for Employee A
+                "rgba(255, 99, 132, 0.9)", // Red for Employee B
+                "rgba(54, 162, 235, 0.9)", // Blue for Employee C
+                "rgba(153, 102, 255, 0.9)", // Purple for Employee D
+                "rgba(255, 159, 64, 0.9)", // Orange for Employee E
+                "rgba(255, 205, 86, 0.9)", // Yellow for Employee F
+                "rgba(75, 192, 192, 0.9)", // Teal for Employee G
+                "rgba(255, 159, 164, 0.9)", // Pink for Employee H
+                "rgba(153, 255, 51, 0.9)"); // Lime for Employee I
+        //Bar chart generator method
+        ChartGenerator.generateBarChart(
+                "chart.html", //Generated HTML File
+                "Employee Sales Performance (January - September)", //chart title
+                "top", //Legend position
+                dataframeMap,  //Our given dataframe map (we do not need a dataframe object. No manipulation is taking place.)
+                "Employee", //X Column
+                Arrays.asList("January", "February", "March", "April", "May", "June", "July", "August", "September"), //Y Columns
+                "Employees", //X-Axis Label
+                "Sales ($)", //Y-Axis Label
+                colors); //Predefined colors
+    }
+}
+~~~
+
+![Image](https://i.imgur.com/cMi92jU.png) 
+
+**Creating a Pie Chart**
+~~~java
+public static void main(String[] args) throws Exception {
+        //Predefined data of favorite sports
+        Map<String, List<Object>> dataFrameMap = Map.ofEntries(
+                Map.entry("Category", Arrays.asList("Baseball", "Football", "Basketball", "Other")),
+                Map.entry("Percentage", Arrays.asList(30, 40, 25, 5))
+        );
+
+        //Defined colors for our categories.
+        List<String> colors = Arrays.asList(
+                "rgba(75, 192, 92, 0.9)",
+                "rgba(255, 99, 132, 0.9)",
+                "rgba(54, 162, 235, 0.9)",
+                "rgba(91, 100, 230, 0.9)"
+        );
+
+        //Pie chart generator.
+        ChartGenerator.generatePieChart(
+                "chart.html", // Generated HTML File
+                "Favorite Sports", // Title
+                "right", // Legend Position
+                dataFrameMap, //Our given dataframe map (we do not need a dataframe object. No manipulation is taking place.)
+                "Category", //X Column
+                "Percentage", //Y Column
+                colors // Predefined colors
+        );
+    }
+}
+
+~~~
+
+![Image](https://i.imgur.com/v43q1eg.png)
+
+**Creating a Doughnut Chart**
+~~~java
+public static void main(String[] args) throws Exception {
+        //Predefined data of favorite sports
+        Map<String, List<Object>> dataFrameMap = Map.ofEntries(
+                Map.entry("Category", Arrays.asList("Baseball", "Football", "Basketball", "Other")),
+                Map.entry("Percentage", Arrays.asList(30, 40, 25, 5))
+        );
+
+        //Defined colors for our categories.
+        List<String> colors = Arrays.asList(
+                "rgba(75, 192, 92, 0.9)",
+                "rgba(255, 99, 132, 0.9)",
+                "rgba(54, 162, 235, 0.9)",
+                "rgba(91, 100, 230, 0.9)"
+        );
+
+        //Donught chart generator.
+        ChartGenerator.generateDoughnutChart(
+                "chart.html", // Generated HTML File
+                "Favorite Sports", // Title
+                "right", // Legend Position
+                dataFrameMap, //Our given dataframe map (we do not need a dataframe object. No manipulation is taking place.)
+                "Category", //X Column
+                "Percentage", //Y Column
+                colors // Predefined colors
+        );
+    }
+}
+
+~~~
+
+![Image](https://i.imgur.com/OXbbsM3.png)
 ## Statistic Functions
 JDataFrame provides a rich set of statistical functions to analyze DataFrames. 
   * Statistic functions supported: sum, mean, mode, median, min, max, and range. (More to come in newer updates)

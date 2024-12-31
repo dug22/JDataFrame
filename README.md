@@ -30,6 +30,7 @@ Currently supports: line, bar, radar, pie and doughnut charts.
 | ![Image](https://i.imgur.com/BJoiade.png) | ![Image](https://i.imgur.com/tQUlTb3.png) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![Image](https://i.imgur.com/wEgKfhy.png) | ![Image](https://i.imgur.com/iEOZUkq.png) |
+| ![Image](https://i.imgur.com/v43q1eg.png) | ![Image](https://i.imgur.com/OXbbsM3.png) |
 ### Getting started:
 If you're using Maven, add JDataFrame to your given project's pom.xml. Copy and paste the given dependency into your pom.xml.
 ~~~xml

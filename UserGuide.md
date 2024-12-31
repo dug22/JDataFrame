@@ -517,6 +517,53 @@ public static void main(String[] args) throws Exception {
 
 ![Image](https://i.imgur.com/cMi92jU.png) 
 
+**Creating a Radar Chart**
+~~~java
+public static void main(String[] args) throws Exception {
+        // Adding data for Employees and their sales for 9 months
+        Map<String, List<Object>> dataframeMap = Map.ofEntries(
+                Map.entry("Employee", Arrays.asList("Employee A", "Employee B", "Employee C", "Employee D", "Employee E", "Employee F", "Employee G", "Employee H", "Employee I")),
+                Map.entry("January", Arrays.asList(1200, 1100, 1300, 1400, 1250, 1050, 950, 1600, 1700)),
+                Map.entry("February", Arrays.asList(1250, 1150, 1350, 1450, 1300, 1080, 980, 1650, 1750)),
+                Map.entry("March", Arrays.asList(1300, 1200, 1400, 1500, 1350, 1100, 1000, 1700, 1800)),
+                Map.entry("April", Arrays.asList(1350, 1250, 1450, 1550, 1400, 1120, 1020, 1750, 1850)),
+                Map.entry("May", Arrays.asList(1400, 1300, 1500, 1600, 1450, 1140, 1040, 1800, 1900)),
+                Map.entry("June", Arrays.asList(1450, 1350, 1550, 1650, 1500, 1160, 1060, 1850, 1950)),
+                Map.entry("July", Arrays.asList(1500, 1400, 1600, 1700, 1550, 1180, 1080, 1900, 2000)),
+                Map.entry("August", Arrays.asList(1550, 1450, 1650, 1750, 1600, 1200, 1100, 1950, 2050)),
+                Map.entry("September", Arrays.asList(1600, 1500, 1700, 1800, 1650, 1220, 1120, 2000, 2100))
+        );
+
+
+
+        //Defined colors for our Y Data.
+        List<String> colors = Arrays.asList(
+                "rgba(75, 192, 92, 0.9)",  // Green for Employee A
+                "rgba(255, 99, 132, 0.9)", // Red for Employee B
+                "rgba(54, 162, 235, 0.9)", // Blue for Employee C
+                "rgba(153, 102, 255, 0.9)", // Purple for Employee D
+                "rgba(255, 159, 64, 0.9)", // Orange for Employee E
+                "rgba(255, 205, 86, 0.9)", // Yellow for Employee F
+                "rgba(75, 192, 192, 0.9)", // Teal for Employee G
+                "rgba(255, 159, 164, 0.9)", // Pink for Employee H
+                "rgba(153, 255, 51, 0.9)"); // Lime for Employee I
+        //Radar chart generator method
+        ChartGenerator.generateRadarChart(
+                "chart.html", //Generated HTML File
+                "Employee Sales Performance (January - September)", //chart title
+                "top", //Legend position
+                dataframeMap,  //Our given dataframe map (we do not need a dataframe object. No manipulation is taking place.)
+                "Employee", //X Column
+                Arrays.asList("January", "February", "March", "April", "May", "June", "July", "August", "September"), //Y Columns
+                "Employees", //X-Axis Label
+                "Sales ($)", //Y-Axis Label
+                colors); //Predefined colors
+    }
+}
+~~~
+
+![Image](https://i.imgur.com/UPWBZcg.png)
+
 **Creating a Pie Chart**
 ~~~java
 public static void main(String[] args) throws Exception {
